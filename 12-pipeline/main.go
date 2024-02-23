@@ -60,7 +60,6 @@ func main() {
 		case <-time.After(time.Second):
 			close(done)
 			return
-
 		}
 	}
 }

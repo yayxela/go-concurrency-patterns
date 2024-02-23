@@ -1,0 +1,5 @@
+port: ":8080"
+jwt:
+  secret: "0LXRgdC70Lgg0YLRiyDRh9C40YLQsNC10YjRjCDRjdGC0L4sINC/0L7RgdGC0LDQstGMINC30LLQtdC30LTRgyDRgNC10L/QvtC30LjRgtC+0YDQuNGO"
+  issuer: "webinar"
+  ttl: 60

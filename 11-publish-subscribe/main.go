@@ -9,6 +9,7 @@ import (
 type Client interface {
 	PublishMessage(msg string)
 	ReadMessage() <-chan string
+	Close()
 }
 
 type client struct {
@@ -27,6 +28,10 @@ func (c *client) ReadMessage() <-chan string {
 	return c.c
 }
 
+func (c *client) Close() {
+	close(c.c)
+}
+
 func main() {
 	pubSub := NewClient()
 	go func() {
@@ -35,8 +40,9 @@ func main() {
 		}
 	}()
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 5; i++ {
 		pubSub.PublishMessage(fmt.Sprintf("new message at %s\n", time.Now().Format(time.RFC3339)))
 		time.Sleep(time.Duration(rand.Intn(1e3)) * time.Millisecond)
 	}
+	pubSub.Close()
 }
